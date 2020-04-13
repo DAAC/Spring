@@ -4,9 +4,8 @@ import com.daac.mx.restful.user.User;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @Component
@@ -42,4 +41,15 @@ public class UserDaoService {
                          .orElse(null);
     }
 
+    public User deleteById(int id){
+        Iterator<User> userIterator = users.iterator();
+        while (userIterator.hasNext()){
+            User user = userIterator.next();
+            if(user.getId() == id){
+                userIterator.remove();
+                return user;
+            }
+        }
+        return null;
+    }
 }

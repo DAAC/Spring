@@ -1,4 +1,4 @@
-package com.daac.mx.restful.user.exception;
+package com.daac.mx.restful.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

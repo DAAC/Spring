@@ -1,5 +1,6 @@
-package com.daac.mx.restful.user.exception;
+package com.daac.mx.restful.exception;
 
+import com.daac.mx.restful.user.exception.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
