@@ -1,10 +1,11 @@
 package com.daac.mx.restful.user.resource;
 
-import com.daac.mx.restful.user.User;
+import com.daac.mx.restful.user.dao.User;
 import com.daac.mx.restful.user.exception.UserNotFoundException;
 import com.daac.mx.restful.user.service.UserDaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
+
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
@@ -26,14 +27,14 @@ public class UserResource {
 
 
     @GetMapping(path = "/users")
-    public List<User> retreiveAllUsers(){
+    public List<User> retreiveAllUsers() {
         return userDaoService.findAll();
     }
 
     @GetMapping(path = "/users/{id}")
-    public Resource retrieveUser(@PathVariable Integer id){
+    public Resource retrieveUser(@PathVariable Integer id) {
         User user = userDaoService.findOne(id);
-        if (user== null)
+        if (user == null)
             throw new UserNotFoundException("id-" + id);
         Resource resource = new Resource<User>(user);
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retreiveAllUsers());
@@ -42,8 +43,8 @@ public class UserResource {
     }
 
     @PostMapping(path = "/users")
-    public ResponseEntity<Object> createUser(@Valid @RequestBody User user){
-       User userSaved = userDaoService.save(user);
+    public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {
+        User userSaved = userDaoService.save(user);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{id}")
                 .buildAndExpand(userSaved.getId())
@@ -52,10 +53,10 @@ public class UserResource {
     }
 
     @DeleteMapping(path = "/users/{id}")
-    public void DeleteUser(@PathVariable Integer id){
+    public void DeleteUser(@PathVariable Integer id) {
         User user = userDaoService.deleteById(id);
         if (user == null)
-            throw new UserNotFoundException("id-"+ id);
+            throw new UserNotFoundException("id-" + id);
     }
 
 }
