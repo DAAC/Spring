@@ -1,11 +1,10 @@
 package com.daac.mx.restful.user.service;
 
-import com.daac.mx.restful.user.User;
+import com.daac.mx.restful.user.dao.User;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @Component
@@ -13,13 +12,13 @@ public class UserDaoService {
 
     private static List<User> users = new ArrayList<User>();
     private static int usersCount = 3;
-
+/*
     static{
         users.add(new User(1,"Dante", new Date()));
         users.add(new User(2, "Elizabeth", new Date()));
         users.add(new User(3, "Azel", new Date()));
     }
-
+*/
     private User user;
 
     public List<User> findAll(){
